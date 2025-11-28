@@ -1,0 +1,28 @@
+# Feature: Formulário de Contato Nexdom
+#   Garantir que o formulário de contato no site Nexdom funcione corretamente.
+#
+#   Background:
+#     Given que a página de contato "https://nexdom.tec.br/contato/" está acessível
+#
+#   Scenario: Enviar formulário de contato com sucesso
+#     When eu acesso a página de contato "https://nexdom.tec.br/contato/"
+#     And preencho o campo "Nome" com "leticia torquato"
+#     And preencho o campo "Email" com "lety1224@gmail.com"
+#     And preencho o campo "Mensagem" com "Nexdom"
+#     And preencho o campo "Profissão" com "Analista de QA"
+#     And preencho o campo "Telefone" com "(41) 999297511"
+#     And preencho o campo "Assunto" com "Solicitação de contato"
+#     And seleciono a opção de consentimento
+#     And clico no botão "Enviar"
+#     Then o formulário deve ser enviado com sucesso
+#     And deve ser exibida uma mensagem de confirmação ou agradecimento
+#
+# ----------------------------------------------------------------------------------
+#
+# Feature: Validação da página inicial Nexdom
+#   Garantir que a página inicial do site Nexdom esteja acessível e responda corretamente.
+#
+#   Scenario: Verificar se a página inicial retorna status 200
+#     When eu faço uma requisição GET para a URL "https://nexdom.tec.br/"
+#     Then a resposta deve ter status 200
+#     And deve ser exibida uma mensagem indicando que a página carregou com sucesso

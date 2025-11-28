@@ -1,0 +1,112 @@
+# Feature: GitHub API - Usuário Autenticado
+#   Verificar se é possível obter informações do usuário autenticado no GitHub via API.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Buscar dados do usuário autenticado
+#     When eu faço uma requisição GET para o endpoint "/user" da API do GitHub
+#     Then a resposta deve ter status 200
+#     And a resposta deve conter os campos "login", "id" e "html_url"
+#     And o login do usuário autenticado deve ser exibido
+#     And a URL do perfil do usuário deve ser exibida
+#
+# ---------------------------------------------------------------------------------------
+# Feature: GitHub API - Verificar se Repositório foi Deletado
+#   Garantir que seja possível verificar a existência de um repositório no GitHub.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Verificar se um repositório foi deletado
+#     When eu faço uma requisição GET para o endpoint "/repos/{usuario}/{repositorio}"
+#     Then a resposta deve ter status 200 ou 404
+#     And se o status for 404, deve ser exibida a mensagem "Repositório não encontrado"
+#     And se o status for 200, deve ser exibida a mensagem "Repositório ainda existe"
+#
+# -----------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Consultar Issue
+#   Garantir que seja possível consultar uma issue específica em um repositório do GitHub.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Consultar uma issue pelo número
+#     When eu faço uma requisição GET para o endpoint "/repos/{usuario}/{repositorio}/issues/{numero}"
+#     Then a resposta deve ter status 200
+#     And a resposta deve conter os campos "number", "title", "body" e "state"
+#     And deve ser exibido o título da issue
+#     And deve ser exibido o estado atual da issue
+#     And deve ser exibido o usuário que criou a issue
+#
+# ------------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Consultar Repositório
+#   Garantir que seja possível consultar um repositório específico no GitHub.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Consultar um repositório existente
+#     When eu faço uma requisição GET para o endpoint "/repos/{usuario}/{repositorio}"
+#     Then a resposta deve ter status 200
+#     And a resposta deve conter os campos "name", "private", "description" e "owner"
+#     And o proprietário do repositório deve ser o usuário esperado
+#     And deve ser exibida a descrição do repositório
+#     And deve ser exibida a URL do repositório
+#
+# -----------------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Consultar Repositórios de um Usuário
+#   Garantir que seja possível listar todos os repositórios públicos de um usuário no GitHub.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Listar todos os repositórios públicos de um usuário
+#     When eu faço uma requisição GET para o endpoint "/users/{usuario}/repos"
+#     Then a resposta deve ter status 200
+#     And a resposta deve ser um array de repositórios
+#     And deve ser exibido o total de repositórios encontrados
+#     And deve ser exibida a lista dos nomes dos repositórios
+#
+# -----------------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Criar Repositório
+#   Garantir que seja possível criar um novo repositório no GitHub via API.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Criar um novo repositório
+#     When eu faço uma requisição POST para o endpoint "/user/repos" com o nome do repositório, descrição e visibilidade
+#     Then a resposta deve ter status 201
+#     And a resposta deve conter os campos "name", "private", "owner" e "html_url"
+#     And deve ser exibida a URL do repositório criado
+#     And deve ser exibida uma mensagem de sucesso indicando que o repositório foi criado
+#
+# -----------------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Deletar Repositório
+#   Garantir que seja possível deletar um repositório existente no GitHub via API.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Deletar um repositório existente
+#     When eu faço uma requisição DELETE para o endpoint "/repos/{usuario}/{repositorio}"
+#     Then a resposta deve ter status 204 ou 404
+#     And se o status for 204, deve ser exibida a mensagem "Repositório deletado com sucesso"
+#     And se o status for 404, deve ser exibida a mensagem "O repositório já não existe"
+#
+# -----------------------------------------------------------------------------------------------------------
+# Feature: GitHub API - Criar Issue
+#   Garantir que seja possível criar uma nova issue em um repositório do GitHub via API.
+#
+#   Background:
+#     Given que o token de autenticação do GitHub está configurado corretamente
+#
+#   Scenario: Criar uma nova issue
+#     When eu faço uma requisição POST para o endpoint "/repos/{usuario}/{repositorio}/issues" com título e descrição
+#     Then a resposta deve ter status 201
+#     And a resposta deve conter os campos "title", "body", "number" e "state"
+#     And a issue deve ser criada com estado "open"
+#     And deve ser exibido o número da issue
+#     And deve ser exibida a URL da issue criada
+#     And deve ser exibida uma mensagem de sucesso indicando que a issue foi criada
